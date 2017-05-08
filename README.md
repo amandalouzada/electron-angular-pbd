@@ -6,7 +6,7 @@
 
 
 
-git clone https://github.com/maximegris/angular-electron.git
+git clone https://github.com/amandalouzada/electron-angular-pbd.git
 
 npm install
 
