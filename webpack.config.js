@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
@@ -43,6 +44,14 @@ function getPlugins() {
   }));
 
   plugins.push(new ProgressPlugin());
+
+  plugins.push(new ProvidePlugin({
+    $:"jquery",
+    jQuery:"jquery",
+    "window.jQuery":"jquery",
+    Hammer:"hammerjs/hammer",
+    Materialize: "materialize-css/dist/js/materialize"
+  }))
 
   plugins.push(new HtmlWebpackPlugin({
     "template": "./src/index.html",
@@ -176,7 +185,8 @@ module.exports = {
   "devtool": "source-map",
   "externals": {
     "child_process": 'require(\'child_process\')',
-    "electron": 'require(\'electron\')'
+    "materialize-css": 'require(\'materialize-css\')',
+    "electron": 'require(\'electron\')',
   },
   "resolve": {
     "extensions": [
@@ -185,7 +195,7 @@ module.exports = {
        ".scss"
     ],
     "aliasFields": [],
-    "alias": { // WORKAROUND See. angular-cli/issues/5433
+    "alias": {
       "environments": isProd ? path.resolve(__dirname, 'src/environments/index.prod.ts') : path.resolve(__dirname, 'src/environments/index.ts')
     },
     "modules": [
@@ -199,7 +209,7 @@ module.exports = {
   },
   "entry": {
     "main": [
-      "./src/main.ts"
+      "./src/main.ts",
     ],
     "polyfills": [
       "./src/polyfills.ts"

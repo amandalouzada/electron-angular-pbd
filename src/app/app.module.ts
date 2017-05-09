@@ -16,6 +16,10 @@ import { InserirComponent } from './inserir/inserir.component';
 import { Uploader }      from 'angular2-http-file-upload';
 
 
+import { MaterializeModule } from "angular2-materialize";
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +30,7 @@ import { Uploader }      from 'angular2-http-file-upload';
     BrowserModule,
     FormsModule,
     HttpModule,
+    MaterializeModule,
     AppRoutingModule
   ],
   providers: [
