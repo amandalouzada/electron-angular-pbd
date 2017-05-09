@@ -18,13 +18,19 @@ import { Uploader }      from 'angular2-http-file-upload';
 
 import { MaterializeModule } from "angular2-materialize";
 
+import { TabelaService } from './providers/tabela.service';
+import { KeysPipe } from './keys.pipe';
+import { ObjetoPipe } from './objeto.pipe';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    InserirComponent
+    InserirComponent,
+    KeysPipe,
+    ObjetoPipe,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +41,7 @@ import { MaterializeModule } from "angular2-materialize";
   ],
   providers: [
     ElectronService,
+    TabelaService,
     Uploader
   ],
   bootstrap: [AppComponent]

@@ -1,6 +1,36 @@
 <form #form="ngForm" (ngSubmit)="upload()">
-    <input type="file" id="upload" name="upload">
-    <button class="waves-effect waves-light btn" type="submit">Enviar</button>
+  <div class="file-field input-field">
+    <div class="btn">
+      <span>Escolher arquivo</span>
+      <input type="file" id="upload" name="upload">
+    </div>
+    <div class="file-path-wrapper">
+      <input type="text" class="file-path validate">
+    </div>
+  </div>
+  <button class="waves-effect waves-light btn" type="submit">Enviar</button>
 </form>
-<div>
-</div>
+<br/>
+<button class="waves-effect waves-light btn" (click)="getCabecalho()">Tabela</button>
+<table class="highlight bordered">
+  <thead>
+    <tr>
+      <th *ngFor="let c of cabecalho">{{c}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let linha of linhas | objeto">
+      <td *ngFor="let l of linha | keys">{{l.value}}</td>
+    </tr>
+  </tbody>
+</table>
+<ul class="pagination">
+  <li class="waves-effect"><a href="#"><i class="material-icons"><</i></a></li>
+  <li class="waves-effect"><a (click)="getLinhas(1)">1</a></li>
+  <li class="waves-effect"><a (click)="getLinhas(2)">2</a></li>
+  <li class="waves-effect"><a (click)="getLinhas(3)">3</a></li>
+  <li class="waves-effect"><a (click)="getLinhas(4)">4</a></li>
+  <li class="waves-effect"><a (click)="getLinhas(5)">4</a></li>
+  <li class="waves-effect"><a (click)="getLinhas(6)">4</a></li>
+  <li class="waves-effect"><a (click)="getLinhas(7)"><i class="material-icons">></i></a></li>
+</ul>
