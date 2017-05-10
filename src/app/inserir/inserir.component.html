@@ -1,15 +1,25 @@
-<form #form="ngForm" (ngSubmit)="upload()">
-  <div class="file-field input-field">
-    <div class="btn">
-      <span>Escolher arquivo</span>
-      <input type="file" id="upload" name="upload">
+<a class="waves-effect waves-light btn" routerLink="">Voltar</a>
+
+<div class="row">
+  <form #form="ngForm" (ngSubmit)="upload()">
+    <div class="col m4">
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>Escolher arquivo</span>
+          <input type="file" id="upload" name="upload">
+        </div>
+        <div class="file-path-wrapper">
+          <input type="text" class="file-path validate">
+        </div>
+      </div>
     </div>
-    <div class="file-path-wrapper">
-      <input type="text" class="file-path validate">
+    <div class="col m4">
+      <button class="waves-effect waves-light btn" type="submit">Enviar</button>
     </div>
-  </div>
-  <button class="waves-effect waves-light btn" type="submit">Enviar</button>
-</form>
+  </form>
+</div>
+
+
 <br/>
 <button class="waves-effect waves-light btn" (click)="getCabecalho()">Tabela</button>
 <table class="highlight bordered">
@@ -30,7 +40,15 @@
   <li class="waves-effect"><a (click)="getLinhas(2)">2</a></li>
   <li class="waves-effect"><a (click)="getLinhas(3)">3</a></li>
   <li class="waves-effect"><a (click)="getLinhas(4)">4</a></li>
-  <li class="waves-effect"><a (click)="getLinhas(5)">4</a></li>
-  <li class="waves-effect"><a (click)="getLinhas(6)">4</a></li>
-  <li class="waves-effect"><a (click)="getLinhas(7)"><i class="material-icons">></i></a></li>
+  <li class="waves-effect"><a (click)="getLinhas(5)">5</a></li>
+  <li class="waves-effect"><a (click)="getLinhas(6)">6</a></li>
+  <li class="waves-effect"><a (click)="getLinhas(7)">7</a></li>
+  <li class="waves-effect"><a (click)="getLinhas(8)">8</a></li>
+  <li class="waves-effect"><a (click)="getLinhas(9)">9</a></li>
+  <li class="waves-effect"><a (click)="getLinhas(10)">10</a></li>
+  <li class="waves-effect"><a (click)="getLinhas(11)">11</a></li>
+  <li class="waves-effect"><a (click)="getLinhas(12)">12</a></li>
+  <li class="waves-effect"><a (click)="getLinhas(13)">13</a></li>
+  <li class="waves-effect"><a (click)="getLinhas(14)">14</a></li>
+  <li class="waves-effect"><a (click)="getLinhas(15)"><i class="material-icons">></i></a></li>
 </ul>
