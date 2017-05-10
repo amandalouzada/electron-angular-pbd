@@ -16,7 +16,7 @@ const routes: Routes = [
     component: InserirComponent
   },
   {
-    path: 'tabela',
+    path: 'tabela/:nome',
     component: TabelaComponent
   },
   {
@@ -24,7 +24,7 @@ const routes: Routes = [
     component: TabelasComponent
   },
   {
-    path: 'tabela-consulta',
+    path: 'tabela-consulta/:nome',
     component: TabelaConsultaComponent
   },
 ];

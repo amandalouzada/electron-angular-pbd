@@ -40,6 +40,16 @@ export class TabelaService {
     })
   }
 
+  public getCollectionPaginada(pagina, collectionName) {
+    return new Promise(resolve=> {
+      this.http.get(this.url+'collectionsPagina/'+collectionName+'/'+((pagina-1)*this.limite).toString(), {headers:this.headers})
+      .map(res => res.json())
+      .subscribe(data=> {
+        resolve(data);
+      })
+    })
+  }
+
   public getQtd(collectionName) {
     return new Promise(resolve=> {
       this.http.get(this.url+'collectionsQtd/'+collectionName, {headers:this.headers})
@@ -59,5 +69,4 @@ export class TabelaService {
       })
     })
   }
-
 }

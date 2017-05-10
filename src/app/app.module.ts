@@ -24,6 +24,7 @@ import { ObjetoPipe } from './objeto.pipe';
 import { TabelasComponent } from './tabelas/tabelas.component';
 import { TabelaComponent } from './tabela/tabela.component';
 import { TabelaConsultaComponent } from './tabela-consulta/tabela-consulta.component';
+import { PaginacaoComponent } from './paginacao/paginacao.component';
 
 
 
@@ -37,6 +38,7 @@ import { TabelaConsultaComponent } from './tabela-consulta/tabela-consulta.compo
     TabelasComponent,
     TabelaComponent,
     TabelaConsultaComponent,
+    PaginacaoComponent,
   ],
   imports: [
     BrowserModule,

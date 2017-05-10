@@ -1,3 +1,16 @@
 <p>
   tabela works!
 </p>
+  <table class="highlight bordered">
+    <thead>
+      <tr>
+        <th *ngFor="let c of cabecalho | keys">{{c.key}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let linha of tabela">
+        <td *ngFor="let l of linha | keys">{{l.value}}</td>
+      </tr>
+    </tbody>
+  </table>
+<app-paginacao [qtdPorPagina]="15" [totalRegistros]="45" [qtdAdjacentes]="1" (onPaginate)="teste($event)"></app-paginacao>
