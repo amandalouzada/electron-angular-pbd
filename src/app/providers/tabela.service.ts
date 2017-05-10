@@ -50,4 +50,14 @@ export class TabelaService {
     })
   }
 
+  public getTabelas() {
+    return new Promise(resolve=> {
+      this.http.get(this.url+'collections/', {headers:this.headers})
+      .map(res => res.json())
+      .subscribe(data=> {
+        resolve(data);
+      })
+    })
+  }
+
 }

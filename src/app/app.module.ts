@@ -21,6 +21,9 @@ import { MaterializeModule } from "angular2-materialize";
 import { TabelaService } from './providers/tabela.service';
 import { KeysPipe } from './keys.pipe';
 import { ObjetoPipe } from './objeto.pipe';
+import { TabelasComponent } from './tabelas/tabelas.component';
+import { TabelaComponent } from './tabela/tabela.component';
+import { TabelaConsultaComponent } from './tabela-consulta/tabela-consulta.component';
 
 
 
@@ -31,6 +34,9 @@ import { ObjetoPipe } from './objeto.pipe';
     InserirComponent,
     KeysPipe,
     ObjetoPipe,
+    TabelasComponent,
+    TabelaComponent,
+    TabelaConsultaComponent,
   ],
   imports: [
     BrowserModule,
