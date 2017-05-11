@@ -37,4 +37,22 @@ export class InserirComponent implements OnInit {
           this.uploaderService.upload(myUploadItem);
     }
 
+    uploadJ() {
+          let uploadFile = (<HTMLInputElement>window.document.getElementById('uploadJ')).files[0];
+          let nome = uploadFile.name.split('.');
+
+          let myUploadItem = new MyUploadItem(uploadFile, nome[0]);
+          myUploadItem.formData = { FormDataKey: 'uploadFile' };
+  // (optional) form data can be sent with file
+
+          this.uploaderService.onSuccessUpload = (item, response, status, headers) => {
+               // success callback
+          };
+          this.uploaderService.onCompleteUpload = (item, response, status, headers) => {
+               // complete callback, called regardless of success or failure
+          };
+
+          this.uploaderService.upload(myUploadItem);
+    }
+
 }
