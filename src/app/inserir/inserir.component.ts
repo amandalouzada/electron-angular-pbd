@@ -11,9 +11,6 @@ import { TabelaService } from '../providers/tabela.service';
 })
 export class InserirComponent implements OnInit {
 
-  private cabecalho: string[] = [];
-  private linhas: any = {};
-  private registros: any;
 
   constructor(public uploaderService: Uploader, public tabelaService: TabelaService) {
   }
@@ -24,10 +21,9 @@ export class InserirComponent implements OnInit {
 
     upload() {
           let uploadFile = (<HTMLInputElement>window.document.getElementById('upload')).files[0];
+          let nome = uploadFile.name.split('.');
 
-          console.log(uploadFile);
-
-          let myUploadItem = new MyUploadItem(uploadFile);
+          let myUploadItem = new MyUploadItem(uploadFile, nome[0]);
           myUploadItem.formData = { FormDataKey: 'uploadFile' };
   // (optional) form data can be sent with file
 
@@ -39,38 +35,6 @@ export class InserirComponent implements OnInit {
           };
 
           this.uploaderService.upload(myUploadItem);
-    }
-
-    getCabecalho(){
-      console.log("fd");
-      this.tabelaService.getHeader("tab_nova")
-        .then((res) =>{
-          if(res)
-            for( var key in res[0]) {
-              this.cabecalho.push(key);
-            }
-        }, (error) => {
-          console.log(error);
-        })
-    }
-
-    getLinhas(pagina){
-      this.tabelaService.getAll(pagina).then((res) =>{
-        if(res)
-          this.linhas=res;
-          console.log(this.linhas);
-      }, (error) => {
-        console.log(error);
-      })
-    }
-
-    getRegistros(){
-      this.tabelaService.getQtd("tab_nova").then((res) =>{
-        if(res)
-          this.registros= res;
-      }, (error) => {
-        console.log(error);
-      })
     }
 
 }

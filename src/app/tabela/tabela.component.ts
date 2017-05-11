@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { TabelaService } from '../providers/tabela.service';
+import {MaterializeAction} from 'angular2-materialize';
+
 
 @Component({
   selector: 'app-tabela',
@@ -9,6 +11,9 @@ import { TabelaService } from '../providers/tabela.service';
   styleUrls: ['./tabela.component.scss']
 })
 export class TabelaComponent implements OnInit {
+
+  modalConf = new EventEmitter<string|MaterializeAction>();
+
   private tabela: any;
   private collectionName: any;
   inscricao: Subscription;
@@ -16,6 +21,8 @@ export class TabelaComponent implements OnInit {
   private qtdRegistros: any = {};
   private qtd:any;
   private sort: any={};
+  private visivel: any={};
+
 
   constructor(private route: ActivatedRoute,
      private router: Router,
@@ -31,6 +38,9 @@ export class TabelaComponent implements OnInit {
         this.tabelaService.getHeader(this.collectionName)
           .then((res)=>{
             if(res)
+              for (let key in res[0]){
+                this.visivel[key]=1;
+              }
               this.cabecalho = res[0];
           },(error)=>{
             console.log(error);
@@ -93,6 +103,13 @@ export class TabelaComponent implements OnInit {
         this.tabela = res;
       },(error)=>{
       })
+  }
+
+  openModal() {
+    this.modalConf.emit({action:"modal",params:['open']});
+  }
+  closeModal() {
+    this.modalConf.emit({action:"modal",params:['close']});
   }
 
 }

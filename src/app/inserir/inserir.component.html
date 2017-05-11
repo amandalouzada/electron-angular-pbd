@@ -1,6 +1,18 @@
+<nav class="barra-superior">
+   <div class="nav-wrapper grey lighten-3 grey-text text-darken-4">
+     <!-- <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <li><a class="grey-text text-darken-4" routerLink=""></a></li>
+       <li><a class="grey-text text-darken-4" routerLink="">Voltar</a></li>
+       <li><a class="grey-text text-darken-4" routerLink=""></a></li>
+       <li><a class="grey-text text-darken-4" routerLink=""></a></li>
+     </ul> -->
+   </div>
+ </nav>
+<div class="container">
+<h4>Inserir arquivo DBF</h4>
 <div class="row">
   <form #form="ngForm" (ngSubmit)="upload()">
-    <div class="col m4">
+    <div class="col m6">
       <div class="file-field input-field">
         <div class="btn">
           <span>Escolher arquivo</span>
@@ -15,4 +27,5 @@
       <button class="waves-effect waves-light btn" type="submit">Enviar</button>
     </div>
   </form>
+</div>
 </div>

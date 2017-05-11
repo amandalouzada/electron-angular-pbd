@@ -1,3 +1,16 @@
+<nav class="barra-superior">
+   <div class="nav-wrapper grey lighten-3 grey-text text-darken-4">
+     <!-- <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <li><a class="grey-text text-darken-4" routerLink=""></a></li>
+       <li><a class="grey-text text-darken-4" routerLink="">Voltar</a></li>
+       <li><a class="grey-text text-darken-4" routerLink=""></a></li>
+       <li><a class="grey-text text-darken-4" routerLink=""></a></li>
+     </ul> -->
+   </div>
+ </nav>
+<div class="container">
+<h4>Tabelas</h4>
 <div class="collection">
   <a *ngFor="let tabela of tabelas" routerLink="/tabela/{{tabela.name}}" class="collection-item">{{tabela.name}}</a>
+</div>
 </div>
