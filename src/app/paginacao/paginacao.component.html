@@ -9,8 +9,8 @@
         <i class="material-icons">chevron_left</i>
       </a>
     </li>
-    <li class="waves-effect" *ngFor="let i of paginas" [ngClass]="{'active': i===pagina}">
-      <a href="#" (click)="paginar(i, $event)">
+    <li class="waves-effect" *ngFor="let i of paginas" [ngClass]="{'light-blue darken-4 white-text': i===pagina}">
+      <a href="#" (click)="paginar(i, $event)" [ngClass]="{'white-text': i===pagina}">
         {{i}}
       </a>
     </li>
