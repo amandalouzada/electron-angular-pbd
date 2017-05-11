@@ -13,10 +13,15 @@ export class TabelaComponent implements OnInit {
   private collectionName: any;
   inscricao: Subscription;
   private cabecalho: any={};
+  private qtdRegistros: any = {};
+  private qtd:any;
+  private sort: any={};
 
   constructor(private route: ActivatedRoute,
      private router: Router,
-     private tabelaService: TabelaService) { }
+     private tabelaService: TabelaService) {
+       this.sort ={parametro:'_id', ordem:-1};
+     }
 
   ngOnInit() {
     this.inscricao = this.route.params.subscribe(
@@ -27,18 +32,29 @@ export class TabelaComponent implements OnInit {
           .then((res)=>{
             if(res)
               this.cabecalho = res[0];
-              console.log(this.cabecalho);
           },(error)=>{
             console.log(error);
           })
 
-        this.tabelaService.getCollectionPaginada(1,this.collectionName)
-          .then((res)=>{
-            this.tabela = res;
-            console.log(this.tabela);
-          },(error)=>{
-            console.log(error);
-          })
+          this.tabelaService.getCollectionPagOrder(1,this.collectionName, this.sort)
+            .then((res)=>{
+              this.tabela = res;
+            },(error)=>{
+              console.log(error);
+            })
+
+          this.tabelaService.getQtd(this.collectionName)
+            .then((res)=>{
+              if(res) {
+                //ISSO É UMA GAMBIARRA
+                this.qtdRegistros = res;
+                this.qtd = this.qtdRegistros.count;
+
+              }
+            },(error)=>{
+              console.log(error);
+            })
+
       }
     )
 
@@ -49,8 +65,34 @@ export class TabelaComponent implements OnInit {
     this.inscricao.unsubscribe();
   }
 
-  teste($event: any){
-    console.log("proxima");
+  getTabela($event: any){
+    this.tabelaService.getCollectionPaginada($event,this.collectionName)
+      .then((res)=>{
+        this.tabela = res;
+      },(error)=>{
+      })
+  }
+
+  getTabelaOrdem($event: any){
+    this.tabelaService.getCollectionPagOrder($event,this.collectionName, this.sort)
+      .then((res)=>{
+        this.tabela = res;
+      },(error)=>{
+      })
+  }
+
+  getOrdem(parametro){
+    if(this.sort.parametro == parametro) {
+      this.sort.ordem = this.sort.ordem*(-1)
+    } else {
+      this.sort.parametro = parametro;
+      this.sort.ordem = -1;
+    }
+    this.tabelaService.getCollectionPagOrder(1,this.collectionName, this.sort)
+      .then((res)=>{
+        this.tabela = res;
+      },(error)=>{
+      })
   }
 
 }

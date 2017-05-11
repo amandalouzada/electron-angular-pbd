@@ -50,6 +50,16 @@ export class TabelaService {
     })
   }
 
+  public getCollectionPagOrder(pagina, collectionName, sort) {
+    return new Promise(resolve=> {
+      this.http.get(this.url+'collectionsOrder/'+collectionName+'/'+sort.parametro+'/'+sort.ordem+'/'+((pagina-1)*this.limite).toString(), {headers:this.headers})
+      .map(res => res.json())
+      .subscribe(data=> {
+        resolve(data);
+      })
+    })
+  }
+
   public getQtd(collectionName) {
     return new Promise(resolve=> {
       this.http.get(this.url+'collectionsQtd/'+collectionName, {headers:this.headers})

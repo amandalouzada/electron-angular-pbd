@@ -24,7 +24,7 @@ const routes: Routes = [
     component: TabelasComponent
   },
   {
-    path: 'tabela-consulta/:nome',
+    path: 'tabela-consulta/',
     component: TabelaConsultaComponent
   },
 ];

@@ -1,10 +1,23 @@
-<p>
-  tabela works!
-</p>
+<nav class="barra-superior">
+   <div class="nav-wrapper grey lighten-3 grey-text text-darken-4">
+     <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <li><a class="grey-text text-darken-4" routerLink=""></a></li>
+       <li><a class="grey-text text-darken-4" routerLink="">Voltar</a></li>
+       <!-- <li><a class="grey-text text-darken-4" routerLink=""></a></li>
+       <li><a class="grey-text text-darken-4"  routerLink=""></a></li> -->
+     </ul>
+   </div>
+ </nav>
   <table class="highlight bordered">
     <thead>
       <tr>
-        <th *ngFor="let c of cabecalho | keys">{{c.key}}</th>
+        <th *ngFor="let c of cabecalho | keys">
+          <button class="btn-flat waves-effect" (click)="getOrdem(c.key)">
+            {{c.key}}
+            <i *ngIf="(sort.ordem == 1) &&  (sort.parametro)== c.key" class="material-icons" >keyboard_arrow_up</i>
+            <i *ngIf="sort.ordem == -1 &&  (sort.parametro)== c.key" class="material-icons" >keyboard_arrow_down</i>
+          </button>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -13,4 +26,4 @@
       </tr>
     </tbody>
   </table>
-<app-paginacao [qtdPorPagina]="15" [totalRegistros]="45" [qtdAdjacentes]="1" (onPaginate)="teste($event)"></app-paginacao>
+<app-paginacao [qtdPorPagina]="100" [(totalRegistros)]="qtd" [qtdAdjacentes]="3" (onPaginate)="getTabela($event)"></app-paginacao>

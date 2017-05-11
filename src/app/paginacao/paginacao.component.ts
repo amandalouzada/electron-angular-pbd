@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, ChangeDetectionStrategy, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
   selector: 'app-paginacao',
   templateUrl: './paginacao.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./paginacao.component.scss']
 })
 export class PaginacaoComponent implements OnInit {
@@ -17,7 +18,8 @@ export class PaginacaoComponent implements OnInit {
   @Input() qtdPorPagina: number;
   @Input() totalRegistros: number;
   @Input() qtdAdjacentes: number;
-  @Input() onPaginate: EventEmitter<number> = new EventEmitter<number>();
+  @Output() onPaginate: EventEmitter<number> = new EventEmitter<number>();
+
 
   pagina: number;
   paginas: Array<number>;
@@ -27,13 +29,16 @@ export class PaginacaoComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.qtdAdjacentes = this.qtdAdjacentes || PaginacaoComponent.ADJACENTES;
-    this.qtdPorPagina = this.qtdPorPagina || PaginacaoComponent.QTD_POR_PAGINA;
-    this.pagina = +this.route.snapshot.queryParams['pagina'] || PaginacaoComponent.PAGINA;
-    this.totalRegistros = this.totalRegistros || PaginacaoComponent.REGISTROS;
-    this.qtdPaginas = Math.ceil(this.totalRegistros/this.qtdPorPagina);
-    this.gerarLinks();
+
   }
+  ngOnChanges(changeRecord) {
+      this.qtdAdjacentes = this.qtdAdjacentes || PaginacaoComponent.ADJACENTES;
+      this.qtdPorPagina = this.qtdPorPagina || PaginacaoComponent.QTD_POR_PAGINA;
+      this.pagina = +this.route.snapshot.queryParams['pagina'] || PaginacaoComponent.PAGINA;
+      this.totalRegistros = this.totalRegistros || PaginacaoComponent.REGISTROS;
+      this.qtdPaginas = Math.ceil(this.totalRegistros/this.qtdPorPagina);
+      this.gerarLinks();
+    }
 
   gerarLinks() {
     this.exibirProximo = this.qtdPaginas !== this.pagina;
@@ -51,6 +56,7 @@ export class PaginacaoComponent implements OnInit {
   paginar(pagina: number, $event: any) {
     $event.preventDefault();
     this.pagina = pagina;
+    console.log(this.totalRegistros);
     this.gerarLinks();
     this.onPaginate.emit(pagina);
   }

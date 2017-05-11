@@ -1,8 +1,7 @@
   <ul class="pagination">
     <li class="waves-effect" *ngIf="pagina!==1">
       <a href="#" (click)="paginar(1, $event)">
-        <i class="material-icons">chevron_left</i>
-        <i class="material-icons">chevron_left</i>
+        <i class="material-icons">skip_previous</i>
       </a>
     </li>
     <li class="waves-effect" *ngIf="pagina!==1">
@@ -22,8 +21,10 @@
     </li>
     <li class="waves-effect" *ngIf="exibirProximo">
       <a href="#" (click)="paginar(qtdPaginas, $event)">
-        <i class="material-icons">chevron_right</i>
-        <i class="material-icons">chevron_right</i>
+        <i class="material-icons">skip_next</i>
       </a>
     </li>
   </ul>
+  <p>Total de registros: <strong>{{ totalRegistros }}</strong>,
+    	 pág. <strong>{{ pagina }}</strong>
+    	 de <strong>{{ qtdPaginas }}</strong>.</p>
