@@ -47,6 +47,15 @@
       <select materialize="material_select" [materializeSelectOptions]="cabecalho">
         <option *ngFor="let c of cabecalho | keys" [value]="campo">{{c.key}}</option>
       </select>
+      <label> Nome
+      <input type="text" [(ngModel)]="configuracao[campo].nome">
+      </label>
+      <label> Tipo
+      <input type="text" >
+      </label>
+      <label> Mascara
+      <input type="text">
+      </label>
     </div>
   </div>
   <div class="modal-footer">
