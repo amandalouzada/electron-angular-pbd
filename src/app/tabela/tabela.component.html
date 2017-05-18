@@ -60,7 +60,6 @@
               <option [value]="3">Booleano</option>
               <option [value]="4">Data e Hora</option>
             </select>
-            <input type="text">
           </label>
           <label> Mascara
             <input type="text"  [(ngModel)]="configuracao[c.key].mascara">
@@ -79,12 +78,13 @@
     <div class="row">
       <div *ngFor="let c of cabecalho | keys" class="switch col s4">
         <label>
-          off
+          <div *ngIf="configuracao[c.key].nome">{{configuracao[c.key].nome}}</div>
+          <div *ngIf="!configuracao[c.key].nome">{{c.key}}</div>
+          <i class="material-icons">visibility_off</i>
           <input type="checkbox" [(ngModel)]="visivel[c.key]">
           <span class="lever"></span>
-          On
+          <i class="material-icons">visibility</i>
         </label>
-        {{c.key}}
       </div>
     </div>
   </div>
