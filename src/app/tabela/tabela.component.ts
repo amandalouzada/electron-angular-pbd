@@ -12,6 +12,7 @@ import {MaterializeAction} from 'angular2-materialize';
 })
 export class TabelaComponent implements OnInit {
 
+  modalVisibilidade = new EventEmitter<string|MaterializeAction>();
   modalConf = new EventEmitter<string|MaterializeAction>();
 
   private tabela: any;
@@ -22,6 +23,9 @@ export class TabelaComponent implements OnInit {
   private qtd:any;
   private sort: any={};
   private visivel: any={};
+  private configuracao: any={};
+  private campo:any='';
+
 
 
   constructor(private route: ActivatedRoute,
@@ -40,8 +44,10 @@ export class TabelaComponent implements OnInit {
             if(res)
               for (let key in res[0]){
                 this.visivel[key]=1;
+                this.configuracao[key]={nome:'', tipo: '', mascara: []};
               }
               this.cabecalho = res[0];
+              console.log(this.configuracao);
           },(error)=>{
             console.log(error);
           })
@@ -105,10 +111,19 @@ export class TabelaComponent implements OnInit {
       })
   }
 
-  openModal() {
+  openModalV() {
+    this.modalVisibilidade.emit({action:"modal",params:['open']});
+  }
+
+  openModalC() {
     this.modalConf.emit({action:"modal",params:['open']});
   }
-  closeModal() {
+
+  closeModalV() {
+    this.modalVisibilidade.emit({action:"modal",params:['close']});
+  }
+
+  closeModalC() {
     this.modalConf.emit({action:"modal",params:['close']});
   }
 
