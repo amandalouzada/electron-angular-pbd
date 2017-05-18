@@ -2,8 +2,8 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { TabelaService } from '../providers/tabela.service';
-import {MaterializeAction} from 'angular2-materialize';
-
+import { MaterializeAction } from 'angular2-materialize';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-tabela',
@@ -24,7 +24,7 @@ export class TabelaComponent implements OnInit {
   private sort: any={};
   private visivel: any={};
   private configuracao: any={};
-  private campo:any='';
+  private campo: any='_id';
 
 
 
@@ -122,7 +122,9 @@ export class TabelaComponent implements OnInit {
   closeModalV() {
     this.modalVisibilidade.emit({action:"modal",params:['close']});
   }
-
+  mudou(){
+    console.log(this.campo);
+  }
   closeModalC() {
     this.modalConf.emit({action:"modal",params:['close']});
   }

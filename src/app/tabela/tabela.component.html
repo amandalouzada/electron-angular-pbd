@@ -44,18 +44,30 @@
 <div class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalConf">
   <div class="modal-content">
     <div class="row">
-      <select materialize="material_select" [materializeSelectOptions]="cabecalho">
-        <option *ngFor="let c of cabecalho | keys" [value]="campo">{{c.key}}</option>
+      <select materialize="material_select" [materializeSelectOptions]="cabecalho" [(ngModel)]="campo" (ngModelChange)="mudou()">
+        <option *ngFor="let c of cabecalho | keys" [value]="c.key">{{c.key}}</option>
       </select>
-      <label> Nome
-      <input type="text" [(ngModel)]="configuracao[campo].nome">
-      </label>
-      <label> Tipo
-      <input type="text" >
-      </label>
-      <label> Mascara
-      <input type="text">
-      </label>
+      <div *ngFor="let c of cabecalho | keys">
+        <div *ngIf="campo == c.key">
+          <label> Nome
+            <input type="text" [(ngModel)]="configuracao[c.key].nome">
+          </label>
+          <label> Tipo
+            <select materialize="material_select" [(ngModel)]="configuracao[c.key].tipo">
+              <option [value]=""></option>
+              <option [value]="1">Texto</option>
+              <option [value]="2">Numérico</option>
+              <option [value]="3">Booleano</option>
+              <option [value]="4">Data e Hora</option>
+            </select>
+            <input type="text">
+          </label>
+          <label> Mascara
+            <input type="text"  [(ngModel)]="configuracao[c.key].mascara">
+          </label>
+        </div>
+      </div>
+
     </div>
   </div>
   <div class="modal-footer">
