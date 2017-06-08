@@ -9,7 +9,7 @@ import { TabelaService } from '../providers/tabela.service';
 })
 export class TabelasComponent implements OnInit {
 
-  private tabelas : any =[];
+  public tabelas : any =[];
   constructor(public tabelaService: TabelaService) {
     this.tabelaService.getTabelas()
       .then((res)=>{

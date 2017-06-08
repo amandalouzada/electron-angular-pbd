@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ReversePipe} from 'ngx-pipes/src/app/pipes/array/reverse';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  title = `App works !`;
+  title = `Teste`;
 
   constructor() { }
 

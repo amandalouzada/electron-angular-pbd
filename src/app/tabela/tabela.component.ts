@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Rx';
 import { TabelaService } from '../providers/tabela.service';
 import { MaterializeAction } from 'angular2-materialize';
 import { Observable } from 'rxjs/Observable';
+import {ReversePipe} from 'ngx-pipes/src/app/pipes/array/reverse';
 
 @Component({
   selector: 'app-tabela',
@@ -15,22 +16,22 @@ export class TabelaComponent implements OnInit {
   modalVisibilidade = new EventEmitter<string|MaterializeAction>();
   modalConf = new EventEmitter<string|MaterializeAction>();
 
-  private tabela: any;
-  private collectionName: any;
+  public tabela: any;
+  public collectionName: any;
   inscricao: Subscription;
-  private cabecalho: any={};
-  private qtdRegistros: any = {};
-  private qtd:any;
-  private sort: any={};
-  private visivel: any={};
-  private configuracao: any={};
-  private campo: any='_id';
+  public cabecalho: any={};
+  public qtdRegistros: any = {};
+  public qtd:any;
+  public sort: any={};
+  public visivel: any={};
+  public configuracao: any={};
+  public campo: any='_id';
 
 
 
-  constructor(private route: ActivatedRoute,
-     private router: Router,
-     private tabelaService: TabelaService) {
+  constructor(public route: ActivatedRoute,
+     public router: Router,
+     public tabelaService: TabelaService) {
        this.sort ={parametro:'_id', ordem:-1};
      }
 

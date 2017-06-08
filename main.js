@@ -2,6 +2,7 @@
 
 try {
   const electron = require('electron');
+  var path = require ('path')
   // Module to control application life.
   const { app } = electron;
   // Module to create native browser window.
@@ -25,7 +26,8 @@ try {
       x: 0,
       y: 0,
       width: size.width,
-      height: size.height
+      height: size.height,
+      icon: path.join(__dirname, 'assets/uft.png')
     });
 
     let url = serve ?

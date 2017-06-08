@@ -17,7 +17,7 @@ import { Uploader }      from 'angular2-http-file-upload';
 
 
 import { MaterializeModule } from "angular2-materialize";
-
+import { NgPipesModule } from 'ngx-pipes';
 import { TabelaService } from './providers/tabela.service';
 import { KeysPipe } from './keys.pipe';
 import { ObjetoPipe } from './objeto.pipe';
@@ -26,6 +26,7 @@ import { TabelaComponent } from './tabela/tabela.component';
 import { TabelaConsultaComponent } from './tabela-consulta/tabela-consulta.component';
 import { PaginacaoComponent } from './paginacao/paginacao.component';
 
+import { ReversePipe } from 'ngx-pipes/src/app/pipes/array/reverse';
 
 
 @NgModule({
@@ -45,11 +46,13 @@ import { PaginacaoComponent } from './paginacao/paginacao.component';
     FormsModule,
     HttpModule,
     MaterializeModule,
+    NgPipesModule,
     AppRoutingModule
   ],
   providers: [
     ElectronService,
     TabelaService,
+    ReversePipe,
     Uploader
   ],
   bootstrap: [AppComponent]
