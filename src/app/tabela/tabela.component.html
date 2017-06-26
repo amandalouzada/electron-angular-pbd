@@ -2,7 +2,8 @@
   <div class="nav-wrapper grey lighten-3 grey-text text-darken-4">
     <ul id="nav-mobile" class="left hide-on-med-and-down">
       <li><a class="grey-text text-darken-4" (click)="openModalV()"><i class="material-icons">visibility</i></a></li>
-      <li><a class="grey-text text-darken-4" (click)="openModalC()"><i class="material-icons">settings</i></a></li>
+      <li><a  materialize="dropdown" class="grey-text text-darken-4" data-activates="configuracoes_menu"><i class="material-icons">settings</i></a></li>
+      <li><a class="grey-text text-darken-4"><i class="material-icons">visibility</i></a></li>
     </ul>
     <!-- <ul id="nav-mobile" class="left hide-on-med-and-down">
     <li><a class="grey-text text-darken-4" routerLink=""></a></li>
@@ -12,21 +13,93 @@
   </ul> -->
 </div>
 </nav>
+<ul id='configuracoes_menu' class='dropdown-content'>
+       <li><a (click)="openModalConfNovo()">Editar</a></li>
+       <li><a (click)="openModalConfImp()">Importar</a></li>
+       <li><a (click)="openModalConfExp()">Exportar</a></li>
+</ul>
 
+
+<!-- Inicio Modal Nova Configurações-->
+
+<div class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalConfNovo">
+  <div class="modal-content">
+    <div class="row">
+      <div class="col s4">
+        <label> Coluna
+          <select materialize="material_select" [materializeSelectOptions]="colunaConf" [(ngModel)]="colunaConf" (ngModelChange)="atualizaConf()">
+            <option *ngFor="let coluna of colHeaders" [value]="coluna">{{coluna}}</option>
+          </select>
+        </label>
+      </div>
+      <div class="col s4">
+        <label> Tipo
+          <select materialize="material_select" [materializeSelectOptions]="tipo" [(ngModel)]="tipo" (ngModelChange)="atualizaTipo()">
+            <option *ngFor="let t of tipos" [value]="t">{{t}}</option>
+          </select>
+        </label>
+      </div>
+      <div class="col s4">
+        <label> Nome
+          <input type="text" [(ngModel)]="colunaConfNome" (ngModelChange)="novaColunaConfNome()">
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect waves-green btn-flat" (click)="closeConfNovo()">Fechar</a>
+  </div>
+</div>
+
+<!-- Fim Modal Novo -->
+
+
+<!-- Inicio Modal Importar Configurações-->
+
+<div class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalConfImp">
+  <div class="modal-content">
+    <div class="row">
+      Modal importar
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect waves-green btn-flat" (click)="closeConfImp()">Fechar</a>
+  </div>
+</div>
+
+<!-- Fim Modal Importar -->
+
+
+<!-- Inicio Modal Exportar Configurações-->
+
+<div class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalConfExp">
+  <div class="modal-content">
+    <div class="row">
+Modal exportar
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect waves-green btn-flat" (click)="closeConfExp()">Fechar</a>
+  </div>
+</div>
+
+<!-- Fim Modal Exportar -->
 
 
 <div class="container"><app-paginacao [qtdPorPagina]="100" [(totalRegistros)]="qtd" [qtdAdjacentes]="3" (onPaginate)="getTabela($event)"></app-paginacao></div>
+<!-- <hotTable [data]="data" [colHeaders]="colHeaders" [options]="options">
+</hotTable> -->
 <table class="highlight bordered centered">
   <thead>
     <tr>
       <th *ngFor="let c of cabecalho | keys" [hidden]="!visivel[c.key]">
-        <button class="btn-flat waves-effect" (click)="getOrdem(c.key)" *ngIf="!configuracao[c.key].nome">
+        <button class="btn-flat waves-effect" (click)="getOrdem(c.key)" (contextMenu)="teste()" *ngIf="!configuracao[c.key]">
           {{c.key}}
           <i *ngIf="(sort.ordem === 1) &&  (sort.parametro)=== c.key" class="material-icons" >keyboard_arrow_up</i>
           <i *ngIf="(sort.ordem === -1) &&  (sort.parametro)=== c.key" class="material-icons" >keyboard_arrow_down</i>
         </button>
-        <button class="btn-flat waves-effect" (click)="getOrdem(c.key)" *ngIf="configuracao[c.key].nome">
-          {{configuracao[c.key].nome}}
+        <button class="btn-flat waves-effect" (click)="getOrdem(c.key)" (contextMenu)="teste()" *ngIf="configuracoes[c.key]">
+          {{configuracoes[c.key].nome}}
           <i *ngIf="(sort.ordem === 1) &&  (sort.parametro)=== c.key" class="material-icons" >keyboard_arrow_up</i>
           <i *ngIf="(sort.ordem === -1) &&  (sort.parametro)=== c.key" class="material-icons" >keyboard_arrow_down</i>
         </button>
@@ -35,7 +108,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let linha of tabela">
-      <td *ngFor="let l of linha | keys"  [hidden]="!visivel[l.key]">{{l.value}}</td>
+      <td *ngFor="let l of linha | keys"  [hidden]="!visivel[l.key]"><app-coluna [valor]="l.value" [arrayChaveValor]="configuracoes[l.key].mascaras"></app-coluna></td>
     </tr>
   </tbody>
 </table>
@@ -44,7 +117,7 @@
 <div class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalConf">
   <div class="modal-content">
     <div class="row">
-      <select materialize="material_select" [materializeSelectOptions]="cabecalho" [(ngModel)]="campo" (ngModelChange)="mudou()">
+      <select materialize="material_select" [materializeSelectOptions]="cabecalho" [(ngModel)]="campo">
         <option *ngFor="let c of cabecalho | keys" [value]="c.key">{{c.key}}</option>
       </select>
       <div *ngFor="let c of cabecalho | keys">

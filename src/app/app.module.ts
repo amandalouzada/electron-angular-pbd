@@ -27,6 +27,8 @@ import { TabelaConsultaComponent } from './tabela-consulta/tabela-consulta.compo
 import { PaginacaoComponent } from './paginacao/paginacao.component';
 
 import { ReversePipe } from 'ngx-pipes/src/app/pipes/array/reverse';
+import { HotTableModule } from 'ng2-handsontable';
+import { ColunaComponent } from './coluna/coluna.component';
 
 
 @NgModule({
@@ -40,6 +42,7 @@ import { ReversePipe } from 'ngx-pipes/src/app/pipes/array/reverse';
     TabelaComponent,
     TabelaConsultaComponent,
     PaginacaoComponent,
+    ColunaComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ import { ReversePipe } from 'ngx-pipes/src/app/pipes/array/reverse';
     HttpModule,
     MaterializeModule,
     NgPipesModule,
+    HotTableModule,
     AppRoutingModule
   ],
   providers: [

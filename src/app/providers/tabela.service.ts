@@ -40,6 +40,17 @@ export class TabelaService {
     })
   }
 
+  public getConfTabela(collectionName) {
+    return new Promise(resolve=> {
+      this.http.get(this.url+'collectionsConf/'+collectionName+'/', {headers:this.headers})
+      .map(res => res.json())
+      .subscribe(data=> {
+        resolve(data);
+      })
+    })
+  }
+
+
   public getCollectionPaginada(pagina, collectionName) {
     return new Promise(resolve=> {
       this.http.get(this.url+'collectionsPagina/'+collectionName+'/'+((pagina-1)*this.limite).toString(), {headers:this.headers})
@@ -78,5 +89,17 @@ export class TabelaService {
         resolve(data);
       })
     })
+  }
+
+  public getDataArray(tabela): any[] {
+    let array = [];
+    for (let linha in tabela ){
+      let vet = [];
+      for(let key in tabela[linha] ) {
+        vet.push(tabela[linha][key]);
+      }
+      array.push(vet)
+    }
+    return array;
   }
 }
